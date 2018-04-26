@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
     require 'open-uri'
     doc = Nokogiri::HTML(open("https://www.reddit.com/"))
 
-    entries = doc.css('.entry')
+    entries = doc.search('.ceq0p2-2')
     entriesArray = []
     entries.each do |entry|
-      title = entry.css('p.title>a').text
-      link = entry.css('p.title>a')[0]['href']
+      title = entry.search('span.ceq0p2-1>a').text
+      link = entry.search('span.ceq0p2-1>a')[0]['href']
       entriesArray << Entry.new(title, link)
     end
 
